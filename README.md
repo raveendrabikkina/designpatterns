@@ -3,4 +3,5 @@
   <li>Structural</li>
   <li>Creational</li>
   <li>Behavioral</li>
+  <li>J2EE Patterns</li>
 </ol>
