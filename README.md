@@ -1,5 +1,6 @@
-Java Design Patterns:
-
-1.Structural
-2.Creational
-3.Behavioral
+<h1>Java Design Patterns:</h1>
+<ol>
+  <li>Structural</li>
+  <li>Creational</li>
+  <li>Behavioral</li>
+</ol>
