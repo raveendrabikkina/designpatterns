@@ -1,4 +1,4 @@
-<h1>Java Design Patterns:</h1>
+<h1>Java Design Patterns</h1>
 <ol>
   <li>Structural</li>
   <li>Creational</li>
