@@ -45,22 +45,26 @@ public class ClientSingleton {
     }
 
     private static void jsonStringTest() {
-        //TODO: Broken singleton fix it
-        final SingletonLazyInitialization instance1 = SingletonLazyInitialization.getInstance();
-        System.out.println("SingletonLazyInitialization:instance1:" + instance1.hashCode());
-        final String objectToJsonInstance1 = JsonUtil.objectToJson(instance1);
-        final SingletonLazyInitialization instance2 = JsonUtil.jsonToObject(objectToJsonInstance1, SingletonLazyInitialization.class);
-        System.out.println("SingletonLazyInitialization:instance2:" + instance2.hashCode());
+        try {
+
+            final SingletonLazyInitialization instance1 = SingletonLazyInitialization.getInstance();
+            System.out.println("SingletonLazyInitialization:instance1:" + instance1.hashCode());
+            final String objectToJsonInstance1 = JsonUtil.objectToJson(instance1);
+            final SingletonLazyInitialization instance2 = JsonUtil.jsonToObject(objectToJsonInstance1, SingletonLazyInitialization.class);
+            System.out.println("SingletonLazyInitialization:instance2:" + instance2.hashCode());
 
 
-        final SingletonEagerInitialize instance3 = SingletonEagerInitialize.getInstance();
-        System.out.println("SingletonEagerInitialize:instance3:" + instance3.hashCode());
-        final String objectToJsonInstance3 = JsonUtil.objectToJson(instance3);
-        final SingletonEagerInitialize instance4 = JsonUtil.jsonToObject(objectToJsonInstance3, SingletonEagerInitialize.class);
-        System.out.println("SingletonEagerInitialize instance4:" + instance4.hashCode());
-        final SingletonEagerInitialize tryToBreak = JsonUtil.jsonToObject(objectToJsonInstance3, SingletonEagerInitialize.class);
-        System.out.println("Breaking SingletonEagerInitialize:" + tryToBreak.hashCode());
+            final SingletonEagerInitialize instance3 = SingletonEagerInitialize.getInstance();
+            System.out.println("SingletonEagerInitialize:instance3:" + instance3.hashCode());
+            final String objectToJsonInstance3 = JsonUtil.objectToJson(instance3);
+            final SingletonEagerInitialize instance4 = JsonUtil.jsonToObject(objectToJsonInstance3, SingletonEagerInitialize.class);
+            System.out.println("SingletonEagerInitialize instance4:" + instance4.hashCode());
+            final SingletonEagerInitialize tryToBreak = JsonUtil.jsonToObject(objectToJsonInstance3, SingletonEagerInitialize.class);
+            System.out.println("Breaking SingletonEagerInitialize:" + tryToBreak.hashCode());
 
+        } catch (final RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void serializationTest() {

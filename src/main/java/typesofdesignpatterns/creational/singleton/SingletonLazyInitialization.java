@@ -1,6 +1,7 @@
 package typesofdesignpatterns.creational.singleton;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Created by ravi on 30/9/18.
@@ -12,6 +13,9 @@ public final class SingletonLazyInitialization implements Serializable {
     private int value;
 
     private SingletonLazyInitialization() {
+        if (Objects.nonNull(instance)) {
+            throw new RuntimeException("Cannot instantiate singleton!!!");
+        }
     }
 
     public static SingletonLazyInitialization getInstance() {
@@ -19,9 +23,8 @@ public final class SingletonLazyInitialization implements Serializable {
         if (instance == null) {
             synchronized (SingletonLazyInitialization.class) {
                 if (instance == null) {
+                    System.out.println("Creating instance for class SingletonLazyInitialization");
                     instance = new SingletonLazyInitialization();
-                } else {
-                    System.out.println("returning singleton");
                 }
             }
         }

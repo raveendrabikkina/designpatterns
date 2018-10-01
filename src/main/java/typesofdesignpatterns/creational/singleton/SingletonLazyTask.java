@@ -21,12 +21,12 @@ public class SingletonLazyTask implements Runnable {
         this.set = set;
     }
 
-    private void LazySingletonSerializationCheck(final SingletonLazyInitialization instance, final String file)
+    private void lazySingletonSerializationCheck(final SingletonLazyInitialization instance, final String file)
             throws ClassNotFoundException {
         try {
             serializeLazySingleton(instance, file);
-            set.add(instance.getClass().getName() + "Instance1:" + String.valueOf(instance.hashCode()));
-            set.add(instance.getClass().getName() + "instance2:" + String.valueOf(deserialize(file).hashCode()));
+            set.add(instance.getClass().getName() + "Instance:" + String.valueOf(instance.hashCode()));
+            set.add(instance.getClass().getName() + "Deserialize Instance:" + String.valueOf(deserialize(file).hashCode()));
         } catch (final IOException e) {
             e.printStackTrace();
         }
@@ -43,7 +43,7 @@ public class SingletonLazyTask implements Runnable {
     public void run() {
         try {
             final SingletonLazyInitialization instance = SingletonLazyInitialization.getInstance();
-            LazySingletonSerializationCheck(instance, file);
+            lazySingletonSerializationCheck(instance, file);
         } catch (final ClassNotFoundException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,7 @@
 package typesofdesignpatterns.creational.singleton;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Created by ravi on 30/9/18.
@@ -12,6 +13,9 @@ public final class SingletonEagerInitialize implements Serializable, Cloneable {
     private int value;
 
     private SingletonEagerInitialize() {
+        if (Objects.nonNull(instance)) {
+            throw new RuntimeException("Cannot instantiate singleton!!!");
+        }
     }
 
     public static SingletonEagerInitialize getInstance() {
