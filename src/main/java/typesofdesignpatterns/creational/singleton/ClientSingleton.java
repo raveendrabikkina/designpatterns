@@ -39,7 +39,7 @@ public class ClientSingleton {
     private static void jsonFileTest() {
         final ExecutorService executorService = Executors.newFixedThreadPool(cores);
         for (int i = 1; i <= 7; i++) {
-            executorService.submit(new JSonFileTask(OBJECT_MAPPER));
+            executorService.submit(new JSonFileTask());
         }
         executorService.shutdown();
     }
