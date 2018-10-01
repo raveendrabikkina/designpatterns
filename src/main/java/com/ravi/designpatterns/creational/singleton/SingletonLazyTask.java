@@ -1,4 +1,7 @@
-package typesofdesignpatterns.creational.singleton;
+package com.ravi.designpatterns.creational.singleton;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -6,12 +9,14 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.Set;
 
-import static typesofdesignpatterns.util.SerializationUtil.deserialize;
+import static com.ravi.designpatterns.util.SerializationUtil.deserialize;
 
 /**
  * Created by ravi on 1/10/18.
  */
 public class SingletonLazyTask implements Runnable {
+
+    private static final Logger LOG = LogManager.getLogger(SingletonLazyTask.class.getName());
 
     private final String file;
     private final Set<String> set;
@@ -21,18 +26,18 @@ public class SingletonLazyTask implements Runnable {
         this.set = set;
     }
 
-    private void lazySingletonSerializationCheck(final SingletonLazyInitialization instance, final String file)
+    private void lazySingletonSerializationCheck(final SingletonLazyInitialize instance, final String file)
             throws ClassNotFoundException {
         try {
             serializeLazySingleton(instance, file);
             set.add(instance.getClass().getName() + "Instance:" + String.valueOf(instance.hashCode()));
             set.add(instance.getClass().getName() + "Deserialize Instance:" + String.valueOf(deserialize(file).hashCode()));
         } catch (final IOException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage());
         }
     }
 
-    private void serializeLazySingleton(final SingletonLazyInitialization instance, final String file)
+    private void serializeLazySingleton(final SingletonLazyInitialize instance, final String file)
             throws IOException {
         final ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
         out.writeObject(instance);
@@ -42,10 +47,10 @@ public class SingletonLazyTask implements Runnable {
     @Override
     public void run() {
         try {
-            final SingletonLazyInitialization instance = SingletonLazyInitialization.getInstance();
+            final SingletonLazyInitialize instance = SingletonLazyInitialize.getInstance();
             lazySingletonSerializationCheck(instance, file);
         } catch (final ClassNotFoundException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage());
         }
     }
 }

@@ -1,7 +1,9 @@
-package typesofdesignpatterns.creational.singleton;
+package com.ravi.designpatterns.creational.singleton;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import typesofdesignpatterns.util.JsonUtil;
+import com.ravi.designpatterns.util.JsonUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
@@ -14,25 +16,26 @@ import java.util.concurrent.Executors;
 public class ClientSingleton {
 
     public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    private static final Logger LOG = LogManager.getLogger(ClientSingleton.class.getName());
     private static final Set<String> set = new ConcurrentSkipListSet<>();
     private static final int cores = Runtime.getRuntime().availableProcessors();
 
     public static void main(final String[] args) {
 
        /*
-        final SingletonLazyInitialization lazySingleton = new SingletonLazyInitialization();
+        final SingletonLazyInitialize lazySingleton = new SingletonLazyInitialize();
         final SingletonEagerInitialize eagerSingleton = new SingletonEagerInitialize();
        */
-        System.out.println("################[enumTest]################");
+        LOG.info("################[enumTest]################");
         enumTest();
 
-        System.out.println("################[serializationTest]################");
+        LOG.info("################[serializationTest]################");
         serializationTest();
 
-        System.out.println("################[jsonStringTest]################");
+        LOG.info("################[jsonStringTest]################");
         jsonStringTest();
 
-        System.out.println("################[jsonFileTest]################");
+        LOG.info("################[jsonFileTest]################");
         jsonFileTest();
     }
 
@@ -47,23 +50,23 @@ public class ClientSingleton {
     private static void jsonStringTest() {
         try {
 
-            final SingletonLazyInitialization instance1 = SingletonLazyInitialization.getInstance();
-            System.out.println("SingletonLazyInitialization:instance1:" + instance1.hashCode());
+            final SingletonLazyInitialize instance1 = SingletonLazyInitialize.getInstance();
+            LOG.debug("SingletonLazyInitialize:Instance1:" + instance1.hashCode());
             final String objectToJsonInstance1 = JsonUtil.objectToJson(instance1);
-            final SingletonLazyInitialization instance2 = JsonUtil.jsonToObject(objectToJsonInstance1, SingletonLazyInitialization.class);
-            System.out.println("SingletonLazyInitialization:instance2:" + instance2.hashCode());
+            final SingletonLazyInitialize instance2 = JsonUtil.jsonToObject(objectToJsonInstance1, SingletonLazyInitialize.class);
+            LOG.debug("SingletonLazyInitialize:Instance2:" + instance2.hashCode());
 
 
             final SingletonEagerInitialize instance3 = SingletonEagerInitialize.getInstance();
-            System.out.println("SingletonEagerInitialize:instance3:" + instance3.hashCode());
+            LOG.debug("SingletonEagerInitialize:Instance3:" + instance3.hashCode());
             final String objectToJsonInstance3 = JsonUtil.objectToJson(instance3);
             final SingletonEagerInitialize instance4 = JsonUtil.jsonToObject(objectToJsonInstance3, SingletonEagerInitialize.class);
-            System.out.println("SingletonEagerInitialize instance4:" + instance4.hashCode());
+            LOG.debug("SingletonEagerInitialize Instance4:" + instance4.hashCode());
             final SingletonEagerInitialize tryToBreak = JsonUtil.jsonToObject(objectToJsonInstance3, SingletonEagerInitialize.class);
-            System.out.println("Breaking SingletonEagerInitialize:" + tryToBreak.hashCode());
+            LOG.debug("Breaking SingletonEagerInitialize:" + tryToBreak.hashCode());
 
         } catch (final RuntimeException e) {
-            System.out.println(e.getMessage());
+            LOG.error(e.getMessage());
         }
     }
 
@@ -76,14 +79,14 @@ public class ClientSingleton {
         try {
             Thread.sleep(1000);
         } catch (final InterruptedException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage());
         }
-        set.stream().forEach(System.out::println);
+        set.stream().forEach(LOG::debug);
     }
 
     private static void enumTest() {
         for (final SingletonUsingEnum singletonUsingEnum : SingletonUsingEnum.values()) {
-            System.out.println(singletonUsingEnum.name());
+            LOG.debug(singletonUsingEnum.name());
         }
     }
 

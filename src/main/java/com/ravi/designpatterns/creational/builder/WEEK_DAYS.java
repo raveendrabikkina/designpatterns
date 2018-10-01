@@ -1,4 +1,4 @@
-package typesofdesignpatterns.creational.builder;
+package com.ravi.designpatterns.creational.builder;
 
 /**
  * Created by ravi on 1/10/18.

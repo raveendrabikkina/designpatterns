@@ -1,4 +1,7 @@
-package typesofdesignpatterns.creational.singleton;
+package com.ravi.designpatterns.creational.singleton;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -6,12 +9,15 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.Set;
 
-import static typesofdesignpatterns.util.SerializationUtil.deserialize;
+import static com.ravi.designpatterns.util.SerializationUtil.deserialize;
 
 /**
  * Created by ravi on 1/10/18.
  */
 public class SingletonEagerTask implements Runnable {
+
+    private static final Logger LOG = LogManager.getLogger(SingletonEagerTask.class.getName());
+
     private final String file;
     private final Set<String> set;
 
@@ -26,7 +32,7 @@ public class SingletonEagerTask implements Runnable {
             final SingletonEagerInitialize instance2 = SingletonEagerInitialize.getInstance();
             eagerSingletonSerializationCheck(instance2, file);
         } catch (final ClassNotFoundException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage());
         }
     }
 
@@ -42,9 +48,9 @@ public class SingletonEagerTask implements Runnable {
         try {
             serializeEagerSingleton(instance, file);
             set.add(instance.getClass().getName() + "Instance1:" + String.valueOf(instance.hashCode()));
-            set.add(instance.getClass().getName() + "instance2:" + String.valueOf(deserialize(file).hashCode()));
+            set.add(instance.getClass().getName() + "Instance2:" + String.valueOf(deserialize(file).hashCode()));
         } catch (final IOException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage());
         }
     }
 }

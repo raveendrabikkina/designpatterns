@@ -1,4 +1,7 @@
-package typesofdesignpatterns.creational.singleton;
+package com.ravi.designpatterns.creational.singleton;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -6,31 +9,33 @@ import java.util.Objects;
 /**
  * Created by ravi on 30/9/18.
  */
-public final class SingletonLazyInitialization implements Serializable {
+public final class SingletonEagerInitialize implements Serializable, Cloneable {
 
-    private static SingletonLazyInitialization instance;
+    private static final Logger LOG = LogManager.getLogger(SingletonEagerInitialize.class.getName());
+
+    private static SingletonEagerInitialize instance = new SingletonEagerInitialize();
 
     private int value;
 
-    private SingletonLazyInitialization() {
+    private SingletonEagerInitialize() {
         if (Objects.nonNull(instance)) {
             throw new RuntimeException("Cannot instantiate singleton!!!");
         }
     }
 
-    public static SingletonLazyInitialization getInstance() {
+    public static SingletonEagerInitialize getInstance() {
 
         if (instance == null) {
-            synchronized (SingletonLazyInitialization.class) {
+            LOG.debug("First null check");
+            synchronized (SingletonEagerInitialize.class) {
                 if (instance == null) {
-                    System.out.println("Creating instance for class SingletonLazyInitialization");
-                    instance = new SingletonLazyInitialization();
+                    LOG.debug("Second null check");
+                    instance = new SingletonEagerInitialize();
                 }
             }
         }
         return instance;
     }
-
 
     @Override
     public Object clone() throws CloneNotSupportedException {

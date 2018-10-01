@@ -1,4 +1,4 @@
-package typesofdesignpatterns.util;
+package com.ravi.designpatterns.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;

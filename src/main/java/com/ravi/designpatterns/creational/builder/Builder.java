@@ -1,4 +1,4 @@
-package typesofdesignpatterns.creational.builder;
+package com.ravi.designpatterns.creational.builder;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package typesofdesignpatterns.creational.builder;
+package com.ravi.designpatterns.creational.builder;
 
 /**
  * Created by ravi on 1/10/18.
@@ -6,6 +6,5 @@ package typesofdesignpatterns.creational.builder;
 public class ClientBuilder {
 
     public static void main(final String[] args) {
-        System.out.println();
     }
 }

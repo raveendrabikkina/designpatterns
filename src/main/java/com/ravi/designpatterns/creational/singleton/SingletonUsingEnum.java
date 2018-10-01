@@ -1,4 +1,4 @@
-package typesofdesignpatterns.creational.singleton;
+package com.ravi.designpatterns.creational.singleton;
 
 /**
  * Created by ravi on 30/9/18.
@@ -13,7 +13,7 @@ public enum SingletonUsingEnum {
 
     int value;
 
-    SingletonUsingEnum(int value) {
+    SingletonUsingEnum(final int value) {
         this.value = value;
     }
 
@@ -21,7 +21,7 @@ public enum SingletonUsingEnum {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(final int value) {
         this.value = value;
     }
 }
