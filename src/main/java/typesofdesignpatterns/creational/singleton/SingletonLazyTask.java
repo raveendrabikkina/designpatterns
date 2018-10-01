@@ -1,7 +1,5 @@
 package typesofdesignpatterns.creational.singleton;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutput;
@@ -17,12 +15,10 @@ public class SingletonLazyTask implements Runnable {
 
     private final String file;
     private final Set<String> set;
-    private final ObjectMapper mapper;
 
-    SingletonLazyTask(final String file, final Set<String> set, final ObjectMapper mapper) {
+    SingletonLazyTask(final String file, final Set<String> set) {
         this.file = file;
         this.set = set;
-        this.mapper = mapper;
     }
 
     private void LazySingletonSerializationCheck(final SingletonLazyInitialization instance, final String file)

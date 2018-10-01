@@ -18,6 +18,7 @@ public class ClientSingleton {
 
     private static final ObjectMapper mapper = new ObjectMapper();
     private static final Set<String> set = new ConcurrentSkipListSet<>();
+    private static final int cores = Runtime.getRuntime().availableProcessors();
 
     public static void main(final String[] args) {
 
@@ -39,8 +40,8 @@ public class ClientSingleton {
     }
 
     private static void jsonFileTest() {
-        final ExecutorService executorService = Executors.newFixedThreadPool(7);
-        for (int i = 1; i <= 1; i++) {
+        final ExecutorService executorService = Executors.newFixedThreadPool(cores);
+        for (int i = 1; i <= 7; i++) {
             executorService.submit(new JSonFileTask(mapper));
         }
         executorService.shutdown();
@@ -86,17 +87,17 @@ public class ClientSingleton {
     }
 
     private static void singletonEagerCheck(final String file) {
-        final ExecutorService executorService = Executors.newFixedThreadPool(7);
+        final ExecutorService executorService = Executors.newFixedThreadPool(cores);
         for (int i = 1; i <= 7; i++) {
-            executorService.submit(new SingletonEagerTask(file, set, mapper));
+            executorService.submit(new SingletonEagerTask(file, set));
         }
         executorService.shutdown();
     }
 
     private static void singletonLazyCheck(final String file) {
-        final ExecutorService executorService = Executors.newFixedThreadPool(7);
+        final ExecutorService executorService = Executors.newFixedThreadPool(cores);
         for (int i = 1; i <= 7; i++) {
-            executorService.submit(new SingletonLazyTask(file, set, mapper));
+            executorService.submit(new SingletonLazyTask(file, set));
         }
         executorService.shutdown();
     }
