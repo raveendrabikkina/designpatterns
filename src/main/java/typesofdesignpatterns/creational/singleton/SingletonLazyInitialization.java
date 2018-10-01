@@ -5,28 +5,29 @@ import java.io.Serializable;
 /**
  * Created by ravi on 30/9/18.
  */
-public final class SingletonEagerInitialize implements Serializable, Cloneable {
+public final class SingletonLazyInitialization implements Serializable {
 
-    private static SingletonEagerInitialize instance = new SingletonEagerInitialize();
+    private static SingletonLazyInitialization instance;
 
     private int value;
 
-    private SingletonEagerInitialize() {
+    private SingletonLazyInitialization() {
     }
 
-    public static SingletonEagerInitialize getInstance() {
+    public static SingletonLazyInitialization getInstance() {
 
         if (instance == null) {
-            System.out.println("First null check");
-            synchronized (SingletonEagerInitialize.class) {
+            synchronized (SingletonLazyInitialization.class) {
                 if (instance == null) {
-                    System.out.println("Second null check");
-                    instance = new SingletonEagerInitialize();
+                    instance = new SingletonLazyInitialization();
+                } else {
+                    System.out.println("returning singleton");
                 }
             }
         }
         return instance;
     }
+
 
     @Override
     public Object clone() throws CloneNotSupportedException {
