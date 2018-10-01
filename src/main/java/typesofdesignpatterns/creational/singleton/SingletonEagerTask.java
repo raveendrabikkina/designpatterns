@@ -6,7 +6,7 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.Set;
 
-import static typesofdesignpatterns.creational.singleton.ClientSingleton.deserialize;
+import static typesofdesignpatterns.util.SerializationUtil.deserialize;
 
 /**
  * Created by ravi on 1/10/18.
