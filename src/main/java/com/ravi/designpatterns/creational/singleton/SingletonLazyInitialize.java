@@ -9,11 +9,13 @@ import java.util.Objects;
 /**
  * Created by ravi on 30/9/18.
  */
-public final class SingletonLazyInitialize implements Serializable {
+final class SingletonLazyInitialize implements Serializable {
+
+    private static final long SerialVersionUID = 2L;
 
     private static final Logger LOG = LogManager.getLogger(SingletonLazyInitialize.class.getName());
 
-    private static SingletonLazyInitialize instance;
+    private static volatile SingletonLazyInitialize instance;
 
     private int value;
 

@@ -9,11 +9,13 @@ import java.util.Objects;
 /**
  * Created by ravi on 30/9/18.
  */
-public final class SingletonEagerInitialize implements Serializable, Cloneable {
+final class SingletonEagerInitialize implements Serializable, Cloneable {
+
+    private static final long SerialVersionUID = 1L;
 
     private static final Logger LOG = LogManager.getLogger(SingletonEagerInitialize.class.getName());
 
-    private static SingletonEagerInitialize instance = new SingletonEagerInitialize();
+    private static volatile SingletonEagerInitialize instance = new SingletonEagerInitialize();
 
     private int value;
 

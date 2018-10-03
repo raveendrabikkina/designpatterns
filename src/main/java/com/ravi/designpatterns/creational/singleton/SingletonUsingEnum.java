@@ -3,7 +3,7 @@ package com.ravi.designpatterns.creational.singleton;
 /**
  * Created by ravi on 30/9/18.
  */
-public enum SingletonUsingEnum {
+enum SingletonUsingEnum {
 
     INSTANCE1(1),
 
@@ -18,10 +18,6 @@ public enum SingletonUsingEnum {
     }
 
     public int getValue() {
-        return value;
-    }
-
-    public void setValue(final int value) {
-        this.value = value;
+        return value * 5;
     }
 }

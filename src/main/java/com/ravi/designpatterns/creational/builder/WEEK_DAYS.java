@@ -3,7 +3,7 @@ package com.ravi.designpatterns.creational.builder;
 /**
  * Created by ravi on 1/10/18.
  */
-public enum WEEK_DAYS {
+enum WEEK_DAYS {
 
     MONDAY("9 AM to 5 PM"),
     TUESDAY("3 AM to 5 PM"),
@@ -14,9 +14,5 @@ public enum WEEK_DAYS {
 
     WEEK_DAYS(final String openHours) {
         this.openHours = openHours;
-    }
-
-    public String getOpenHours() {
-        return openHours;
     }
 }

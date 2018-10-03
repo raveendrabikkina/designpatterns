@@ -41,7 +41,7 @@ public class ClientSingleton {
 
     private static void jsonFileTest() {
         final ExecutorService executorService = Executors.newFixedThreadPool(cores);
-        for (int i = 1; i <= 7; i++) {
+        for (int i = 1; i <= cores; i++) {
             executorService.submit(new JSonFileTask());
         }
         executorService.shutdown();
@@ -51,19 +51,19 @@ public class ClientSingleton {
         try {
 
             final SingletonLazyInitialize instance1 = SingletonLazyInitialize.getInstance();
-            LOG.debug("SingletonLazyInitialize:Instance1:" + instance1.hashCode());
+            LOG.debug("SingletonLazyInitialize:Instance1:{}", instance1.hashCode());
             final String objectToJsonInstance1 = JsonUtil.objectToJson(instance1);
             final SingletonLazyInitialize instance2 = JsonUtil.jsonToObject(objectToJsonInstance1, SingletonLazyInitialize.class);
-            LOG.debug("SingletonLazyInitialize:Instance2:" + instance2.hashCode());
+            LOG.debug("SingletonLazyInitialize:Instance2:{}", instance2);
 
 
             final SingletonEagerInitialize instance3 = SingletonEagerInitialize.getInstance();
-            LOG.debug("SingletonEagerInitialize:Instance3:" + instance3.hashCode());
+            LOG.debug("SingletonEagerInitialize:Instance3:{}", instance3.hashCode());
             final String objectToJsonInstance3 = JsonUtil.objectToJson(instance3);
             final SingletonEagerInitialize instance4 = JsonUtil.jsonToObject(objectToJsonInstance3, SingletonEagerInitialize.class);
-            LOG.debug("SingletonEagerInitialize Instance4:" + instance4.hashCode());
+            LOG.debug("SingletonEagerInitialize Instance4:{}", instance4);
             final SingletonEagerInitialize tryToBreak = JsonUtil.jsonToObject(objectToJsonInstance3, SingletonEagerInitialize.class);
-            LOG.debug("Breaking SingletonEagerInitialize:" + tryToBreak.hashCode());
+            LOG.debug("Breaking SingletonEagerInitialize:{}", tryToBreak);
 
         } catch (final RuntimeException e) {
             LOG.error(e.getMessage());
@@ -86,13 +86,14 @@ public class ClientSingleton {
 
     private static void enumTest() {
         for (final SingletonUsingEnum singletonUsingEnum : SingletonUsingEnum.values()) {
-            LOG.debug(singletonUsingEnum.name());
+            LOG.debug("Name:{}", singletonUsingEnum.name());
+            LOG.debug("Value:{}", singletonUsingEnum.getValue());
         }
     }
 
     private static void singletonEagerCheck(final String file) {
         final ExecutorService executorService = Executors.newFixedThreadPool(cores);
-        for (int i = 1; i <= 7; i++) {
+        for (int i = 1; i <= cores; i++) {
             executorService.submit(new SingletonEagerTask(file, set));
         }
         executorService.shutdown();
@@ -100,7 +101,7 @@ public class ClientSingleton {
 
     private static void singletonLazyCheck(final String file) {
         final ExecutorService executorService = Executors.newFixedThreadPool(cores);
-        for (int i = 1; i <= 7; i++) {
+        for (int i = 1; i <= cores; i++) {
             executorService.submit(new SingletonLazyTask(file, set));
         }
         executorService.shutdown();

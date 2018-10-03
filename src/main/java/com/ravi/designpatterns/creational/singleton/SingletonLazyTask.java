@@ -14,7 +14,7 @@ import static com.ravi.designpatterns.util.SerializationUtil.deserialize;
 /**
  * Created by ravi on 1/10/18.
  */
-public class SingletonLazyTask implements Runnable {
+class SingletonLazyTask implements Runnable {
 
     private static final Logger LOG = LogManager.getLogger(SingletonLazyTask.class.getName());
 
