@@ -1,6 +1,8 @@
 com/ravi/designpatterns/creational/singleton/SingletonUsingEnum.class
 com/ravi/designpatterns/creational/singleton/SingletonLazyInitialize.class
 com/ravi/designpatterns/creational/builder/Product$ProductBuilder.class
+com/ravi/designpatterns/creational/builder/SpecialProduct.class
+com/ravi/designpatterns/creational/builder/Builder.class
 com/ravi/designpatterns/creational/singleton/ClientSingleton.class
 com/ravi/designpatterns/creational/builder/FreeProduct.class
 com/ravi/designpatterns/creational/singleton/SingletonEagerInitialize.class
