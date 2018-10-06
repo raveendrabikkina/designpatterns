@@ -3,6 +3,7 @@ package com.ravi.designpatterns.creational.builder.general;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by ravi on 1/10/18.
@@ -16,6 +17,7 @@ public class Product {
     private final List<String> features;
     private final List<WEEK_DAYS> availableDays;
     private final FreeProduct freeProduct;
+    private final AtomicInteger timesBought = new AtomicInteger(0);
 
     private Product(final Builder builder) {
         this.id = builder.id;
@@ -53,6 +55,10 @@ public class Product {
 
     public FreeProduct getFreeProduct() {
         return freeProduct;
+    }
+
+    public AtomicInteger getTimesBought() {
+        return timesBought;
     }
 
     @Override
