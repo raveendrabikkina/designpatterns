@@ -10,9 +10,6 @@
         <option value="fieldCanBeFinal" />
         <option value="localCanBeFinal" />
         <option value="missingOverrideAnnotation" />
-        <option value="finalPrivateMethod" />
-        <option value="explicitTypeCanBeDiamond" />
-        <option value="suppressAnnotation" />
         <option value="unnecessarySemicolon" />
       </set>
     </option>

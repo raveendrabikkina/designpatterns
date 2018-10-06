@@ -1,9 +1,12 @@
-package com.ravi.designpatterns.creational.builder;
+package com.ravi.designpatterns.creational.builder.lombok;
+
+import lombok.Getter;
 
 /**
  * Created by ravi on 1/10/18.
  */
-enum WEEK_DAYS {
+@Getter
+public enum WEEK_DAYS {
 
     MONDAY("9 AM to 5 PM"),
     TUESDAY("3 AM to 5 PM"),

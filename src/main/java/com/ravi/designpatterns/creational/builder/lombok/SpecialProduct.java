@@ -1,4 +1,6 @@
-package com.ravi.designpatterns.creational.builder;
+package com.ravi.designpatterns.creational.builder.lombok;
+
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -6,6 +8,7 @@ import java.util.List;
 /**
  * Created by ravi on 1/10/18.
  */
+@Data
 public class SpecialProduct {
     private int id;
     private String name;

@@ -1,4 +1,4 @@
-package com.ravi.designpatterns.creational.builder;
+package com.ravi.designpatterns.creational.builder.lombok;
 
 import lombok.Data;
 
@@ -6,8 +6,10 @@ import lombok.Data;
  * Created by ravi on 3/10/18.
  */
 @Data
-class FreeProduct {
+public class FreeProduct {
 
     private int id;
     private String name;
+
+
 }

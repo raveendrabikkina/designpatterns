@@ -1,8 +1,8 @@
-package com.ravi.designpatterns.creational.builder;
+package com.ravi.designpatterns.creational.builder.lombok;
 
 import org.junit.Test;
 
-import static com.ravi.designpatterns.creational.builder.ClientBuilder.testFreeProductBuilder;
+import static com.ravi.designpatterns.creational.builder.util.BuilderUtil.testFreeProductBuilder;
 
 /**
  * Created by ravi on 3/10/18.

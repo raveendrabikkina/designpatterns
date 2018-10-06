@@ -1,7 +1,8 @@
-package com.ravi.designpatterns.creational.builder;
+package com.ravi.designpatterns.creational.builder.lombok;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
@@ -11,9 +12,10 @@ import java.util.List;
  * Created by ravi on 1/10/18.
  */
 @Builder
-@EqualsAndHashCode
 @ToString
-class Product {
+@Getter
+@EqualsAndHashCode
+public class Product {
     private int id;
     private String name;
     private String colour;
